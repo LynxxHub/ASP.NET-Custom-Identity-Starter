@@ -16,6 +16,7 @@ namespace ASP.NET_Custom_Identity_Starter.Data
             RegisterField<ApplicationUser>(builder, "FirstName", "_firstName");
             RegisterField<ApplicationUser>(builder, "LastName", "_lastName");
             RegisterField<ApplicationUser>(builder, "DateOfBirth", "_dateOfBirth");
+            RegisterField<ApplicationUser>(builder, "ProfilePictureUrl", "_profilePictureUrl");
             RegisterField<ApplicationUser>(builder, "Gender", "_gender");
             RegisterField<ApplicationUser>(builder, "Address", "_address");
             RegisterField<ApplicationUser>(builder, "City", "_city");

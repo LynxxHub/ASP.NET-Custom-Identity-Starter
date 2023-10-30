@@ -1,0 +1,32 @@
+﻿@page
+@model ManageAvatar
+@{
+    ViewData["Title"] = "Manage Avatar";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+
+<input type="hidden" id="originalAvatarUrl" value="@Model.CurrentAvatarPath" />
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="avatarInput" class="avatar-label">
+            <img id="avatarPreview" src="@Model.CurrentAvatarPath" alt="Current Avatar" class="img-thumbnail avatar-image" width="200" />
+            <div class="avatar-text">
+                <label id="uploadLabel">Upload New Avatar</label>
+                <span id="previewMessage" class="text-muted" style="display: none;">This is a preview. Don't forget to Save!</span>
+            </div>
+        </label>
+        <input type="file" id="avatarInput" class="hidden-input" asp-for="UploadedAvatar" />
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+
+    <button id="saveButton" type="submit" class="btn btn-primary" disabled>Save</button>
+    <button id="resetButton" type="button" class="btn btn-primary" style="display:none">Reset</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

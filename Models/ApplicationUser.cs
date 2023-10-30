@@ -105,6 +105,11 @@
         {
             IsProfileComplete = true;
         }
+
+        internal void UpdateProfilePicture(string path)
+        {
+            _profilePictureUrl = path;
+        }
     }
 }
 
