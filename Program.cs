@@ -1,6 +1,7 @@
-using ASP.NET_Custom_Identity_Starter.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ASP.NET_Custom_Identity_Starter.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ASP.NET_Custom_Identity_Starter
 {
@@ -16,9 +17,14 @@ namespace ASP.NET_Custom_Identity_Starter
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddRazorPages();
+            builder.Services.AddTransient<IEmailSender, Services.EmailSender>();
 
             var app = builder.Build();
 
