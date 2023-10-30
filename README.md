@@ -1,8 +1,3 @@
-# ASP.NET Custom Identity Starter
-
-<p align="center">
-    <strong>Welcome to the ASP.NET Custom Identity Starter!</strong>
-</p>
 <h1>🛠️ ASP.NET Custom Identity Starter</h1>
 
 <p>Hey there! Welcome to my ASP.NET Identity Starter template.</p>
