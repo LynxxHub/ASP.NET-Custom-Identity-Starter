@@ -1,11 +1,23 @@
-<h1><b>ASP.NET Custom Identity Starter<b></h1>
+# ASP.NET Custom Identity Starter
 
-🚀 A robust ASP.NET web application template that provides a pre-configured Identity setup, tailored with custom User entities and distinct roles: Admin, Moderator, and User. Designed to be a foundational starting point for any ASP.NET application, ensuring faster deployment while retaining the flexibility for further per-app customizations.
+<p align="center">
+    <strong>Welcome to the ASP.NET Custom Identity Starter!</strong>
+</p>
+<p align="center">
+    A robust ASP.NET web application template designed to fast-track your development process. Equipped with a pre-configured Identity setup and detailed roles, it's your ideal springboard for the next project.
+</p>
 
-Features:
+## 🌟 Features
 
-Custom User Entity: Extended from the standard Identity User for additional properties and functionalities.
-Roles Configuration: Pre-defined roles of Admin, Moderator, and User for fine-tuned access control.
-Scalable Foundation: Crafted to be the backbone for various ASP.NET projects, allowing seamless integration and adaptability.
-Easy Customization: Modular design ensuring that it's a breeze to mold the template as per specific application requirements.
-Ideal for developers who frequently work on ASP.NET projects and seek a reliable, customizable Identity configuration to kick-start their applications!
+- <strong>Custom User Entity:</strong> Extended from the standard Identity User, integrating more functionalities and customization options.
+
+- <strong>Roles Configuration:</strong> Comprehensive roles to fit your needs:
+  - 🛡 Admin
+  - 🌐 Moderator
+  - 👥 User
+  
+- <strong>Scalable Foundation:</strong> More than just a starter – a scalable backbone built for a variety of ASP.NET projects, guaranteeing seamless integrations and adaptability.
+
+<p align="center">
+    🚀 Kickstart your ASP.NET projects with confidence!
+</p>
