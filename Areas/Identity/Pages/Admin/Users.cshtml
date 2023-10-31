@@ -1,0 +1,31 @@
+﻿@page
+@using ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Admin;
+@model UsersModel
+
+<h2>User Management</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Last login date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.LastLoginDate</td>
+                <td>
+                    <a href="#" class="btn btn-info">View Details</a>
+                    <a href="#" class="btn btn-warning">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

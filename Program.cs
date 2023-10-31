@@ -1,3 +1,6 @@
+using ASP.NET_Custom_Identity_Starter.Middlewares;
+using ASP.NET_Custom_Identity_Starter.Services;
+
 namespace ASP.NET_Custom_Identity_Starter
 {
     public class Program
@@ -20,6 +23,7 @@ namespace ASP.NET_Custom_Identity_Starter
 
             builder.Services.AddRazorPages();
             builder.Services.AddTransient<IEmailSender, Services.EmailSender>();
+            builder.Services.AddScoped<SignInManager<ApplicationUser>, CustomSignInManager>();
 
             var app = builder.Build();
 
@@ -37,6 +41,7 @@ namespace ASP.NET_Custom_Identity_Starter
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseMiddleware<LastLoginMiddleware>();
 
             app.UseRouting();
 
