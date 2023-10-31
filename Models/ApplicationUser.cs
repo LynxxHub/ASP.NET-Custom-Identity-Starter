@@ -49,13 +49,11 @@
         public bool IsLoggedIn { get; private set; } = false;
 
         // Update methods
-        public void UpdateProfile(string firstName, string lastName, DateTime dateOfBirth,
-            string profilePictureUrl, string? gender = null)
+        public void UpdateProfile(string firstName, string lastName, DateTime dateOfBirth, string? gender = null)
         {
             _firstName = firstName;
             _lastName = lastName;
             _dateOfBirth = dateOfBirth;
-            _profilePictureUrl = profilePictureUrl;
             _gender = gender;
         }
 

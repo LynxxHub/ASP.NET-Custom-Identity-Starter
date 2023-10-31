@@ -2,23 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using ASP.NET_Custom_Identity_Starter.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account
 {
@@ -78,26 +69,33 @@ namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
+            [MaxLength(255)]
             public string Email { get; set; }
 
             [Required]
             [Display(Name = "Username")]
+            [MinLength(3, ErrorMessage = "Username must be at least 3 characters.")]
+            [MaxLength(50, ErrorMessage = "Username cannot exceed 50 characters.")]
             public string Username { get; set; }
 
             [Required]
             [Display(Name = "First name")]
+            [MaxLength(50, ErrorMessage = "First name cannot exceed 50 characters.")]
             public string FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last name")]
+            [MaxLength(50, ErrorMessage = "Last name cannot exceed 50 characters.")]
             public string LastName { get; set; }
 
             [Display(Name = "Date of birth")]
+            [DataType(DataType.Date)]
+            [Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "Date of birth must be between 1900 and 2100.")]
             public DateTime DateOfBirth { get; set; }
 
             [Display(Name = "Address")]
+            [MaxLength(250, ErrorMessage = "Address cannot exceed 250 characters.")]
             public string Address { get; set; }
-
 
             [Display(Name = "Gender")]
             public string Gender { get; set; }
@@ -136,7 +134,7 @@ namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                user.UpdateProfile(Input.FirstName,Input.LastName, Input.DateOfBirth,"default.png",Input.Gender);
+                user.UpdateProfile(Input.FirstName,Input.LastName, Input.DateOfBirth,Input.Gender);
 
                 await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

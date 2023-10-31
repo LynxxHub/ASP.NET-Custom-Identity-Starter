@@ -59,6 +59,44 @@ namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [StringLength(100, ErrorMessage = "First name cannot be longer than 100 characters.")]
+            public string FirstName { get; set; }
+
+            [StringLength(100, ErrorMessage = "Last name cannot be longer than 100 characters.")]
+            public string LastName { get; set; }
+
+            [DataType(DataType.Date)]
+             public DateTime DateOfBirth { get; set; }
+
+            [StringLength(50, ErrorMessage = "Gender cannot be longer than 50 characters.")]
+            public string Gender { get; set; }
+
+            [StringLength(200, ErrorMessage = "Address cannot be longer than 200 characters.")]
+            public string Address { get; set; }
+
+            [StringLength(100, ErrorMessage = "City cannot be longer than 100 characters.")]
+            public string City { get; set; }
+
+            [StringLength(100, ErrorMessage = "State cannot be longer than 100 characters.")]
+            public string State { get; set; }
+
+            [StringLength(100, ErrorMessage = "Country cannot be longer than 100 characters.")]
+            public string Country { get; set; }
+
+            [RegularExpression(@"^\d{5}$", ErrorMessage = "Invalid postal code format.")]
+            public string PostalCode { get; set; } = "00000";
+
+            [StringLength(100, ErrorMessage = "Preferred language cannot be longer than 100 characters.")]
+            public string PreferredLanguage { get; set; }
+
+            [StringLength(100, ErrorMessage = "Time zone cannot be longer than 100 characters.")]
+            public string TimeZone { get; set; }
+
+            [StringLength(50, ErrorMessage = "Theme cannot be longer than 50 characters.")]
+            public string Theme { get; set; }
+
+            public bool IsSubscribedToNewsletter { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -70,7 +108,19 @@ namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                City = user.City,
+                State = user.State,
+                PostalCode = user.PostalCode,
+                PreferredLanguage = user.PreferredLanguage,
+                TimeZone = user.TimeZone,
+                Theme = user.Theme,
+                DateOfBirth = user.DateOfBirth,
+                Gender = user.Gender,
+                Country = user.Country
             };
         }
 
@@ -111,9 +161,24 @@ namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
-            return RedirectToPage();
+
+            user.UpdateProfile(Input.FirstName, Input.LastName, Input.DateOfBirth, Input.Gender);
+            user.UpdateContactInfo(Input.Address, Input.City, Input.State, Input.Country, Input.PostalCode);
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.RefreshSignInAsync(user);
+                StatusMessage = "Your profile has been updated";
+                return RedirectToPage();
+            } else
+            {
+                StatusMessage = "Unexpected error when trying to update user information.";
+                await LoadAsync(user);
+                return Page();
+            }
+
         }
     }
 }

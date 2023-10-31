@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ASP.NET_Custom_Identity_Starter.Data;
-using Microsoft.AspNetCore.Identity.UI.Services;
-
 namespace ASP.NET_Custom_Identity_Starter
 {
     public class Program
