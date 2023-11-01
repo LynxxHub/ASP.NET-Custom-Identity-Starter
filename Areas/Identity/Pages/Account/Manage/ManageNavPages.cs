@@ -63,6 +63,7 @@ namespace  ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account.Manage
         public static string ManageAvatar => "ManageAvatar";
         public static string AdminIndex => "Index";
         public static string AdminUsers => "Users";
+        public static string AdminPanel => "AdminPanel";
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -119,6 +120,7 @@ namespace  ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account.Manage
         public static string ManageAvatarNavClass(ViewContext viewContext) => PageNavClass(viewContext, ManageAvatar);
         public static string AdminIndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, AdminIndex);
         public static string AdminUsersNavClass(ViewContext viewContext) => PageNavClass(viewContext, AdminUsers);
+        public static string AdminPanelNavClass(ViewContext viewContext) => PageNavClass(viewContext, AdminPanel);
 
 
         /// <summary>

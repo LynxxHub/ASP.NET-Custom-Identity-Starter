@@ -1,0 +1,139 @@
+﻿@page "/UserDetails/{UserId}"
+@using ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Admin;
+@model UserDetailsModel
+
+<h2>User Details</h2>
+
+<!-- Profile Picture -->
+<div class="mb-5">
+    <img src="@Model.AppUser.ProfilePictureUrl" alt="Profile Picture" class="img-thumbnail" style="width: 250px; height: 250px;" />
+</div>
+
+<form method="post">
+    <div class="row">
+
+        <!-- First column -->
+        <div class="col-md-6">
+
+            <!-- Profile Information -->
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.UserName" class="form-control" readonly disabled />
+                <label asp-for="AppUser.UserName"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.FirstName" class="form-control" readonly />
+                <label asp-for="AppUser.FirstName"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.LastName" class="form-control" readonly />
+                <label asp-for="AppUser.LastName"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.DateOfBirth" type="date" class="form-control" readonly />
+                <label asp-for="AppUser.DateOfBirth"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.Gender" class="form-control" readonly />
+                <label asp-for="AppUser.Gender"></label>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.Address" class="form-control" readonly />
+                <label asp-for="AppUser.Address"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.City" class="form-control" readonly />
+                <label asp-for="AppUser.City"></label>
+            </div>
+
+
+
+
+        </div>
+
+        <!-- Second column -->
+        <div class="col-md-6">
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.Email" class="form-control" readonly disabled />
+                <label asp-for="AppUser.Email"></label>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.State" class="form-control" readonly />
+                <label asp-for="AppUser.State"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.Country" class="form-control" readonly />
+                <label asp-for="AppUser.Country"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.PostalCode" class="form-control" readonly />
+                <label asp-for="AppUser.PostalCode"></label>
+            </div>
+
+            <!-- Account Metadata -->
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.RegistrationDate" type="date" class="form-control" readonly />
+                <label asp-for="AppUser.RegistrationDate"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.LastLoginDate" type="date" class="form-control" readonly />
+                <label asp-for="AppUser.LastLoginDate"></label>
+            </div>
+            <!-- Preferences -->
+            <div class="form-floating mb-3">
+                <input asp-for="AppUser.PreferredLanguage" class="form-control" readonly />
+                <label asp-for="AppUser.PreferredLanguage"></label>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button id="edit-button" type="button" class="btn btn-warning">Edit</button>
+        <button id="save-button" type="submit" class="btn btn-success" style="display: none;">Save</button>
+        <button id="cancel-button" type="button" class="btn btn-danger" style="display: none;">Cancel</button>
+        <a id="back-button" asp-page="./Users" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+@section Scripts {
+    <script>
+        document.getElementById("edit-button").addEventListener("click", function () {
+            const inputs = document.querySelectorAll("input, select");
+            inputs.forEach(input => {
+                input.removeAttribute("readonly");
+            });
+
+            document.getElementById("edit-button").style.display = "none";
+            document.getElementById("save-button").style.display = "inline-block";
+            document.getElementById("cancel-button").style.display = "inline-block";
+            document.getElementById("back-button").style.display = "none";
+        });
+
+        document.getElementById("cancel-button").addEventListener("click", function () {
+            const inputs = document.querySelectorAll("input, select");
+            inputs.forEach(input => {
+                input.setAttribute("readonly", true);
+                if (input.getAttribute("name") === "AppUser.UserName") {
+                    input.setAttribute("disabled", true);
+                }
+            });
+
+            document.getElementById("edit-button").style.display = "inline-block";
+            document.getElementById("save-button").style.display = "none";
+            document.getElementById("cancel-button").style.display = "none";
+            document.getElementById("back-button").style.display = "inline-block";
+        });
+    </script>
+}
