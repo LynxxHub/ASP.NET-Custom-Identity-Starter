@@ -1,0 +1,80 @@
+﻿@page "roleId"
+@model ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Admin.RoleDetailsModel
+@{
+}
+
+<h2>Role Details</h2>
+<br />
+
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Role Information</h3>
+            <dl class="row">
+                <dt class="col-sm-4">Role Name:</dt>
+                <dd class="col-sm-8">
+                    <input type="text" asp-for="Role.Name" class="form-control" disabled />
+                </dd>
+
+                <dt class="col-sm-4">Description:</dt>
+                <dd class="col-sm-8">
+                    <input type="text" asp-for="Role.Description" class="form-control" disabled />
+                </dd>
+
+                <dt class="col-sm-4">Date Created:</dt>
+                <dd class="col-sm-8">
+                    <input type="text" asp-for="Role.DateCreated" class="form-control date-field" disabled />
+                </dd>
+
+                <dt class="col-sm-4">Date Modified:</dt>
+                <dd class="col-sm-8">
+                    <input type="text" asp-for="Role.DateModified" class="form-control date-field" disabled />
+                </dd>
+
+                <dt class="col-sm-4">Active:</dt>
+                <dd class="col-sm-8">
+                    <input type="checkbox" asp-for="Role.IsActive" disabled />
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h3>Users with this Role</h3>
+            <ul class="list-group">
+                @foreach (var user in Model.AssignedUsers)
+                {
+                    <li class="list-group-item">
+                        <a asp-page="./UserDetails" asp-route-userId="@user.Id">@user.UserName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <button id="editButton" type="button" class="btn btn-warning" onclick="editMode()">Edit</button>
+    <a id="backButton" asp-page="./Roles" class="btn btn-secondary">Back</a>
+    <button id="saveButton" type="submit" class="btn btn-success" style="display: none;">Save</button>
+    <button id="cancelButton" type="button" class="btn btn-danger" onclick="cancelEdit()" style="display: none;">Cancel</button>
+</form>
+
+@section Scripts {
+    <script>
+        function editMode() {
+            // Enable all input and textarea elements
+            document.querySelectorAll('input:not(.date-field), textarea').forEach(function (element) {
+                element.disabled = false;
+            });
+
+            // Hide the edit button and show the save and cancel buttons
+            document.getElementById('editButton').style.display = 'none';
+            document.getElementById('backButton').style.display = 'none';
+            document.getElementById('saveButton').style.display = 'inline';
+            document.getElementById('cancelButton').style.display = 'inline';
+        }
+
+        function cancelEdit() {
+            // Reload the page to revert changes
+            location.reload();
+        }
+    </script>
+}
