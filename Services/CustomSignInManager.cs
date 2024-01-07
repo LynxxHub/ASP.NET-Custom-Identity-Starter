@@ -13,8 +13,8 @@ namespace ASP.NET_Custom_Identity_Starter.Services
                                    IOptions<IdentityOptions> optionsAccessor,
                                    ILogger<SignInManager<ApplicationUser>> logger,
                                    IAuthenticationSchemeProvider schemes,
-                                   IUserConfirmation<ApplicationUser> confirmation) // Added this parameter
-            : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation) // And passed it here
+                                   IUserConfirmation<ApplicationUser> confirmation)
+            : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _contextAccessor = contextAccessor ?? throw new ArgumentNullException(nameof(contextAccessor));

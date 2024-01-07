@@ -1,5 +1,6 @@
 using ASP.NET_Custom_Identity_Starter.Middlewares;
 using ASP.NET_Custom_Identity_Starter.Services;
+using ASP.NET_Custom_Identity_Starter.Settings;
 
 namespace ASP.NET_Custom_Identity_Starter
 {
@@ -15,15 +16,25 @@ namespace ASP.NET_Custom_Identity_Starter
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddRazorPages();
-            builder.Services.AddTransient<IEmailSender, Services.EmailSender>();
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.AddScoped<SignInManager<ApplicationUser>, CustomSignInManager>();
+
+
+            builder.Services.Configure<SMTPSettings>(builder.Configuration.GetSection("SMTP"));
 
             var app = builder.Build();
 

@@ -7,13 +7,13 @@
         private string _firstName;
         private string _lastName;
         private DateTime _dateOfBirth;
-        private string _profilePictureUrl;
+        private string? _profilePictureUrl;
         private string? _gender;  // Consider using an Enum if you have a predefined set of genders.
 
         public string FirstName => _firstName;
         public string LastName => _lastName;
         public DateTime DateOfBirth => _dateOfBirth;
-        public string ProfilePictureUrl => _profilePictureUrl;
+        public string? ProfilePictureUrl => _profilePictureUrl;
         public string? Gender => _gender;
 
         // Contact Information

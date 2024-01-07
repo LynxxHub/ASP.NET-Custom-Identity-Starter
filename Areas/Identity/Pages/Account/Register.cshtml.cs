@@ -2,14 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 
 namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account
 {
@@ -90,7 +82,7 @@ namespace ASP.NET_Custom_Identity_Starter.Areas.Identity.Pages.Account
 
             [Display(Name = "Date of birth")]
             [DataType(DataType.Date)]
-            [Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "Date of birth must be between 1900 and 2100.")]
+            //[Range(typeof(DateTime), "1900-01-01", "2100-12-31", ErrorMessage = "Date of birth must be between 1900 and 2100.")]
             public DateTime DateOfBirth { get; set; }
 
             [Display(Name = "Address")]

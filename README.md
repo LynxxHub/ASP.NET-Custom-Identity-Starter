@@ -27,10 +27,8 @@
    <li>🧩 Designed for easy integrations and adaptability.</li>
 </ul>
 
-<h2>📌 Coming Up:</h2>
+<h2>✨ New Features:</h2>
 <ul>
-   <li>🎩 Roles & Permissions Overhaul.</li>
-   <li>🖥️ Admin Panel: User & role management, role creation, and edits.</li>
+   <li>🖥️ Admin Panel: Comprehensive management of users and roles, including role creation, editing, and deletion.</li>
+   <li>✉️ Email Sender: Integrated SMTP server for sending confirmation emails to newly registered users.</li>
 </ul>
-
-<p><strong>Hop in and kickstart your ASP.NET adventure with a fresh vibe!</strong> 🚀🎉</p>
